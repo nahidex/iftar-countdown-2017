@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1433 560 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #1dffb7;
+      }
+    </style>
+  </defs>
+  <g id="ic_alarm_black_48px" transform="translate(1433 560)">
+    <path id="Path_3" data-name="Path 3" class="cls-1" d="M0,0H50V50H0Z"/>
+    <path id="Path_4" data-name="Path 4" class="cls-2" d="M43.667,9.9,34.083,1.86,31.4,5.048l9.583,8.042ZM14.25,5.048,11.583,1.86,2,9.881l2.687,3.188L14.25,5.048Zm9.625,9.6H20.75v12.5l9.9,5.938,1.562-2.562-8.333-4.938ZM22.833,6.318a18.75,18.75,0,1,0,18.75,18.75A18.752,18.752,0,0,0,22.833,6.318Zm0,33.333A14.583,14.583,0,1,1,37.417,25.068,14.573,14.573,0,0,1,22.833,39.652Z" transform="translate(2.167 2.015)"/>
+  </g>
+</svg>
