@@ -18,7 +18,8 @@ export default class Main extends Component {
 				seconds: null
 			},
 			staticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate()),
-			nextStaticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate())
+			nextStaticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + (d.getDate()+1)),
+			isShehri: false
 		};
 	}
 
@@ -29,7 +30,7 @@ export default class Main extends Component {
 	}
 
 	componentDidUpdate() {
-		if(this.state.countData.total < 0){
+		if(this.distance < 0){
 			clearInterval(this.timerId);
 		}
 	}
@@ -40,10 +41,26 @@ export default class Main extends Component {
 
 	updateTime() { 
 		var setCountDown = this.setCountDown(this.getEndTime());
-		this.total = setCountDown.total;
-		this.setState({
-			countData: setCountDown
-		});
+		this.distance = setCountDown.total;
+		if(this.distance < 0){
+			this.setState({
+				countData: {
+					total: 0,
+					days: 0,
+					hours: 0,
+					minutes: 0,
+					seconds: 0
+				},
+				isShehri: false
+			});
+		} 
+		if(this.distance > 0){
+			this.setState({
+				countData: setCountDown,
+				isShehri: false
+			});
+		}
+				
 	}
 
 	findOne(list, date) {
@@ -52,6 +69,14 @@ export default class Main extends Component {
 		});
 	}
 
+	getEndTimeForSheri() {
+		var d = new Date();
+		var singleRamadan = this.findOne(ramadanList, d.getLongMonth() + ' ' + (d.getDate()+1));
+		
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
+		console.log(makeJsDateType);
+		return new Date(makeJsDateType).getTime();
+	}
 	getEndTime() {
 		var d = new Date();
 		var singleRamadan = this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate());
@@ -81,7 +106,7 @@ export default class Main extends Component {
 	render() {
 		return (
             <div className="mains">
-                <CountDownTimer countData={this.state.countData} staticInfo={this.state.staticInfo[0]}/>
+                <CountDownTimer type={this.state.isShehri} countData={this.state.countData} staticInfo={this.state.staticInfo[0]}/>
                 <div className="card-wrapper">
                     <IftarTimeToday iftarTime={this.state.staticInfo[0].iftarTime}/>
                     <NextSheheriTime nextSheheriTime={this.state.nextStaticInfo[0].sheriLastTime} />
