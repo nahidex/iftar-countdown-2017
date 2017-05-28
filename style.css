@@ -80,3 +80,51 @@ aside h3 {
 .card h5  {
    margin-top: 20px;
 }
+
+@media only screen and (max-width : 480px) {
+    .main-wrapper {
+        flex-direction: column-reverse;
+    }
+    aside {
+        flex: 1;
+    }
+    aside h3 {
+        margin-top: 9vh;
+    }
+    .mains {
+        flex: 1;
+    }
+    .main-timer {
+        padding: 6vh 0;
+    }
+     .main-timer h1 {
+         font-size: 64px;
+     }
+     .main-timer h3 {
+         font-size: 30px;
+     }
+     .ramadan-info {
+         margin-top: 0px;
+         margin-bottom: 30px;
+     }
+     .card-wrapper {
+         width: 100%;
+         margin-top: -40px;
+         margin-bottom: 40px;
+     }
+     .card {
+         padding: 20px 26px;
+         margin: 0 10px;
+     }
+     .card img {
+         height: 24px;
+         width: 24px;
+     }
+     .card h5 {
+         font-size: 16px;
+         margin-top: 11px;
+     }
+     .card h6 {
+         font-size: 26px;
+     }
+}
