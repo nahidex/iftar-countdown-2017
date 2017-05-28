@@ -19,6 +19,7 @@ export default class Main extends Component {
 			},
 			staticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate()),
 			nextStaticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate())
+
 		};
 	}
 
@@ -29,7 +30,7 @@ export default class Main extends Component {
 	}
 
 	componentDidUpdate() {
-		if(this.state.countData.total < 0){
+		if(this.distance < 0){
 			clearInterval(this.timerId);
 		}
 	}
@@ -40,10 +41,26 @@ export default class Main extends Component {
 
 	updateTime() { 
 		var setCountDown = this.setCountDown(this.getEndTime());
-		this.total = setCountDown.total;
-		this.setState({
-			countData: setCountDown
-		});
+
+		this.distance = setCountDown.total;
+		if(this.distance < 0){
+			this.setState({
+				countData: {
+					total: 0,
+					days: 0,
+					hours: 0,
+					minutes: 0,
+					seconds: 0
+				},
+				isShehri: false
+			});
+		} 
+		if(this.distance > 0){
+			this.setState({
+				countData: setCountDown,
+				isShehri: false
+			});
+		}
 	}
 
 	findOne(list, date) {
@@ -86,7 +103,6 @@ export default class Main extends Component {
                     <IftarTimeToday iftarTime={this.state.staticInfo[0].iftarTime}/>
                     <NextSheheriTime nextSheheriTime={this.state.nextStaticInfo[0].sheriLastTime} />
                 </div>
-                
             </div>
 		);
 	}
