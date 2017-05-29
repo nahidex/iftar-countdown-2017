@@ -18,7 +18,8 @@ export default class Main extends Component {
 				seconds: null
 			},
 			staticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate()),
-			nextStaticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate())
+			nextStaticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate()),
+			isShehri: false
 
 		};
 	}
@@ -30,9 +31,9 @@ export default class Main extends Component {
 	}
 
 	componentDidUpdate() {
-		if(this.distance < 0){
-			clearInterval(this.timerId);
-		}
+		// if(this.distanceToIFtar < 0){
+		// 	clearInterval(this.timerId);
+		// }
 	}
 
 	componentWillUnmount() {
@@ -40,24 +41,31 @@ export default class Main extends Component {
 	}
 
 	updateTime() { 
-		var setCountDown = this.setCountDown(this.getEndTime());
+		var setCountDownForIftar = this.setCountDown(this.getEndTime());
+		var setCountDownForShehri = this.setCountDown(this.getEndTimeForShehri());
+		var setCountDownForNextShehri = this.setCountDown(this.getEndTimeForNextShehri());
+		this.distanceToIFtar = setCountDownForIftar.total;
+		this.distanceToShehri = setCountDownForShehri.total;
+		this.distanceToNextShehri = setCountDownForNextShehri.total;
+		
 
-		this.distance = setCountDown.total;
-		if(this.distance < 0){
+		if(this.distanceToIFtar < 0 && this.distanceToShehri < 0){
 			this.setState({
-				countData: {
-					total: 0,
-					days: 0,
-					hours: 0,
-					minutes: 0,
-					seconds: 0
-				},
-				isShehri: false
+				countData: setCountDownForNextShehri,
+				isShehri: true
 			});
 		} 
-		if(this.distance > 0){
+
+		if(this.distanceToIFtar < 0 && this.distanceToShehri > 0){
 			this.setState({
-				countData: setCountDown,
+				countData: setCountDownForShehri,
+				isShehri: true
+			});
+		}
+
+		if(this.distanceToIFtar > 0){
+			this.setState({
+				countData: setCountDownForIftar,
 				isShehri: false
 			});
 		}
@@ -76,9 +84,23 @@ export default class Main extends Component {
 		return new Date(makeJsDateType).getTime();
 	}
 
+	getEndTimeForShehri() {
+		var d = new Date();
+		var singleRamadan = this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate());
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
+		return new Date(makeJsDateType).getTime();
+	}
+	getEndTimeForNextShehri() {
+		var d = new Date();
+		var singleRamadan = this.findOne(ramadanList, d.getLongMonth() + ' ' + (d.getDate()+1));
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
+		return new Date(makeJsDateType).getTime();
+	}
+
 	setCountDown(endTime) {
 
 		var now = new Date().getTime();
+
 		var distance = endTime - now;
 
 		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -98,7 +120,7 @@ export default class Main extends Component {
 	render() {
 		return (
             <div className="mains">
-                <CountDownTimer countData={this.state.countData} staticInfo={this.state.staticInfo[0]}/>
+                <CountDownTimer type={this.state.isShehri} countData={this.state.countData} staticInfo={this.state.staticInfo[0]}/>
                 <div className="card-wrapper">
                     <IftarTimeToday iftarTime={this.state.staticInfo[0].iftarTime}/>
                     <NextSheheriTime nextSheheriTime={this.state.nextStaticInfo[0].sheriLastTime} />

@@ -13,6 +13,7 @@
   "dependencies": {
     "grommet": "^1.4.0",
     "marked": "^0.3.6",
+    "moment": "^2.18.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "webpack": "^2.5.1",
