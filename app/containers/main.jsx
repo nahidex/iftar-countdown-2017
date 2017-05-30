@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'moment';
 import ramadanList from '../../ramadanList';
 
 import IftarTimeToday from '../components/iftar-time-today.jsx';
@@ -18,7 +19,7 @@ export default class Main extends Component {
 				seconds: null
 			},
 			staticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate()),
-			nextStaticInfo:  this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate()),
+			nextStaticInfo: this.findOne(ramadanList, Moment(d).add(1, 'days')._d.getLongMonth() + ' ' + Moment(d).add(1, 'days').date()),
 			isShehri: false
 
 		};
@@ -47,23 +48,31 @@ export default class Main extends Component {
 		this.distanceToIFtar = setCountDownForIftar.total;
 		this.distanceToShehri = setCountDownForShehri.total;
 		this.distanceToNextShehri = setCountDownForNextShehri.total;
-		
 
 		if(this.distanceToIFtar < 0 && this.distanceToShehri < 0){
 			this.setState({
 				countData: setCountDownForNextShehri,
-				isShehri: true
+				isShehri: true,
+				nextStaticInfo: this.findOne(ramadanList, Moment(new Date()).add(1, 'days')._d.getLongMonth() + ' ' + Moment(new Date()).add(1, 'days').date()),
 			});
 		} 
 
-		if(this.distanceToIFtar < 0 && this.distanceToShehri > 0){
+		if(	this.distanceToIFtar > this.distanceToShehri 
+			&& this.distanceToNextShehri > this.distanceToShehri 
+			&& this.distanceToShehri > 0){
+			
 			this.setState({
 				countData: setCountDownForShehri,
-				isShehri: true
+				isShehri: true,
+				nextStaticInfo: this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate())
 			});
 		}
-
-		if(this.distanceToIFtar > 0){
+		
+		
+		if(	this.distanceToIFtar > 0
+			&& this.distanceToNextShehri > this.distanceToIFtar
+			&& this.distanceToShehri < 0){
+						
 			this.setState({
 				countData: setCountDownForIftar,
 				isShehri: false
@@ -71,7 +80,7 @@ export default class Main extends Component {
 		}
 	}
 
-	findOne(list, date) {
+	findOne(list, date) {					
 		return list.filter(function(x){
 			return x.date === date;
 		});
@@ -80,6 +89,7 @@ export default class Main extends Component {
 	getEndTime() {
 		var d = new Date();
 		var singleRamadan = this.findOne(ramadanList, d.getLongMonth() + ' ' + d.getDate());
+		
 		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].iftarTime;
 		return new Date(makeJsDateType).getTime();
 	}
@@ -90,10 +100,12 @@ export default class Main extends Component {
 		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
 		return new Date(makeJsDateType).getTime();
 	}
+
 	getEndTimeForNextShehri() {
 		var d = new Date();
-		var singleRamadan = this.findOne(ramadanList, d.getLongMonth() + ' ' + (d.getDate()+1));
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
+
+		var singleRamadan = this.findOne(ramadanList, Moment(d).add(1, 'days')._d.getLongMonth() + ' ' + Moment(d).add(1, 'days').date());
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;		
 		return new Date(makeJsDateType).getTime();
 	}
 
