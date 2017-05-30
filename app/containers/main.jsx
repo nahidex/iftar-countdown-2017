@@ -31,9 +31,9 @@ export default class Main extends Component {
 	}
 
 	componentDidUpdate() {
-		if(this.distanceToIFtar < 0) clearInterval(this.timerId);
-		if(this.distanceToShehri < 0) clearInterval(this.timerId);
-		if(this.distanceToNextShehri < 0) clearInterval(this.timerId);
+		// if(this.distanceToIFtar < 0) clearInterval(this.timerId);
+		// if(this.distanceToShehri < 0) clearInterval(this.timerId);
+		// if(this.distanceToNextShehri < 0) clearInterval(this.timerId);
 	}
 
 	componentWillUnmount() {
@@ -47,7 +47,7 @@ export default class Main extends Component {
 		this.distanceToIFtar = setCountDownForIftar.total;
 		this.distanceToShehri = setCountDownForShehri.total;
 		this.distanceToNextShehri = setCountDownForNextShehri.total;
-
+		console.log(this.distanceToShehri, this.distanceToIFtar, this.distanceToNextShehri);
 		if(this.distanceToIFtar < 0 && this.distanceToShehri < 0){
 			this.setState({
 				countData: setCountDownForNextShehri,
@@ -58,7 +58,7 @@ export default class Main extends Component {
 
 		if(	this.distanceToIFtar > this.distanceToShehri
 			&& this.distanceToNextShehri > this.distanceToShehri
-			&& this.distanceToShehri > 0){
+			&& this.distanceToShehri < 0){
 			this.setState({
 				countData: setCountDownForShehri,
 				isShehri: true,
@@ -70,7 +70,7 @@ export default class Main extends Component {
 		if(	this.distanceToIFtar > 0
 			&& this.distanceToNextShehri > this.distanceToIFtar
 			&& this.distanceToShehri < 0){
-
+			console.log('yaas');
 			this.setState({
 				countData: setCountDownForIftar,
 				isShehri: false
