@@ -44,11 +44,23 @@ export default class Main extends Component {
 		var setCountDownForIftar = this.setCountDown(this.getEndTime());
 		var setCountDownForShehri = this.setCountDown(this.getEndTimeForShehri());
 		var setCountDownForNextShehri = this.setCountDown(this.getEndTimeForNextShehri());
-		this.distanceToIFtar = setCountDownForIftar.total;
-		this.distanceToShehri = setCountDownForShehri.total;
-		this.distanceToNextShehri = setCountDownForNextShehri.total;
-		console.log(this.distanceToShehri, this.distanceToIFtar, this.distanceToNextShehri);
-		if(this.distanceToIFtar < 0 && this.distanceToShehri < 0){
+
+		if(this.getEndTimeForShehri() > this.getDate().getTime()){
+			this.setState({
+				countData: setCountDownForShehri,
+				isShehri: true,
+				nextStaticInfo: this.findOne(ramadanList, Moment(this.getDate()).add(1, 'days')._d.getLongMonth() + ' ' + Moment(this.getDate()).add(1, 'days').date()),
+			});
+		}
+
+		if(this.getEndTime() > this.getDate().getTime() && this.getEndTimeForShehri() < this.getDate().getTime()){
+			this.setState({
+				countData: setCountDownForIftar,
+				isShehri: false,
+				nextStaticInfo: this.findOne(ramadanList, Moment(this.getDate()).add(1, 'days')._d.getLongMonth() + ' ' + Moment(this.getDate()).add(1, 'days').date()),
+			});
+		}
+		if(this.getEndTimeForNextShehri() > this.getDate().getTime() && this.getEndTimeForShehri() < this.getDate().getTime() && this.getEndTime() < this.getDate().getTime()){
 			this.setState({
 				countData: setCountDownForNextShehri,
 				isShehri: true,
@@ -56,26 +68,36 @@ export default class Main extends Component {
 			});
 		}
 
-		if(	this.distanceToIFtar > this.distanceToShehri
-			&& this.distanceToNextShehri > this.distanceToShehri
-			&& this.distanceToShehri < 0){
-			this.setState({
-				countData: setCountDownForShehri,
-				isShehri: true,
-				nextStaticInfo: this.findOne(ramadanList, this.getDate().getLongMonth() + ' ' + this.getDate().getDate())
-			});
-		}
+		// if(this.distanceToIFtar < 0 && this.distanceToShehri < 0){
+		// 	console.log('Next Date Shehri');
+		// 	this.setState({
+		// 		countData: setCountDownForNextShehri,
+		// 		isShehri: true,
+		// 		nextStaticInfo: this.findOne(ramadanList, Moment(this.getDate()).add(1, 'days')._d.getLongMonth() + ' ' + Moment(this.getDate()).add(1, 'days').date()),
+		// 	});
+		// }
+
+		// if(	Math.abs(this.distanceToIFtar) > Math.abs(this.distanceToShehri)
+		// 	&& this.distanceToNextShehri > this.distanceToShehri
+		// 	&& this.distanceToShehri < 0 && this.distanceToIFtar < 0){
+		// 	console.log('Todays Sheheri');
+		// 	this.setState({
+		// 		countData: setCountDownForShehri,
+		// 		isShehri: true,
+		// 		nextStaticInfo: this.findOne(ramadanList, this.getDate().getLongMonth() + ' ' + this.getDate().getDate())
+		// 	});
+		// }
 
 
-		if(	this.distanceToIFtar > 0
-			&& this.distanceToNextShehri > this.distanceToIFtar
-			&& this.distanceToShehri < 0){
-			console.log('yaas');
-			this.setState({
-				countData: setCountDownForIftar,
-				isShehri: false
-			});
-		}
+		// if(	this.distanceToIFtar > 0
+		// 	&& this.distanceToNextShehri > this.distanceToIFtar
+		// 	&& this.distanceToShehri < 0){
+		// 	console.log('Today Iftar');
+		// 	this.setState({
+		// 		countData: setCountDownForIftar,
+		// 		isShehri: false
+		// 	});
+		// }
 	}
 
 	findOne(list, date) {
