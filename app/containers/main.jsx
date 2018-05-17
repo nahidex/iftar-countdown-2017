@@ -110,19 +110,19 @@ export default class Main extends Component {
 	}
 	getEndTime() {
 		var singleRamadan = this.findOne(ramadanList, this.getDate().getLongMonth() + ' ' + this.getDate().getDate());
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].iftarTime;
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2018 ' + singleRamadan[0].iftarTime;
 		return new Date(makeJsDateType).getTime();
 	}
 
 	getEndTimeForShehri() {
 		var singleRamadan = this.findOne(ramadanList, this.getDate().getLongMonth() + ' ' + this.getDate().getDate());
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2018 ' + singleRamadan[0].sheriLastTime;
 		return new Date(makeJsDateType).getTime();
 	}
 
 	getEndTimeForNextShehri() {
 		var singleRamadan = this.findOne(ramadanList, Moment(this.getDate()).add(1, 'days')._d.getLongMonth() + ' ' + Moment(this.getDate()).add(1, 'days').date());
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2017 ' + singleRamadan[0].sheriLastTime;
+		var makeJsDateType = singleRamadan[0].date + ', ' + '2018 ' + singleRamadan[0].sheriLastTime;
 		return new Date(makeJsDateType).getTime();
 	}
 
