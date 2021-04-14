@@ -8,7 +8,7 @@ export default class Todo extends Component {
                 <h4>দিনের কাজ</h4>
                 <div className="wrap">
                     <h1>{this.props.todo}</h1>
-                    <img src="../icons/033-Quran.png" alt=""/>
+                    <img src="033-Quran.png" alt=""/>
                 </div>	
             </div>
         </div>
