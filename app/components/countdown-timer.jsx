@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
+import 'moment/locale/bn-bd';
 
 import RamadanInfo from './ramadan-info.jsx';
 
 export default class CountdownTimer extends Component {
     render () {
 		
-		var time = Moment().format(('0' + this.props.countData.hours).slice(-2) 
+		var time = Moment().locale('bn-bd').format(('0' + this.props.countData.hours).slice(-2) 
 									+ ':' + ('0' + this.props.countData.minutes).slice(-2) 
 								+ ':' + ('0'+this.props.countData.seconds).slice(-2));
         return (
