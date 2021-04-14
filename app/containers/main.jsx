@@ -5,6 +5,9 @@ import ramadanList from '../../ramadanList';
 import IftarTimeToday from '../components/iftar-time-today.jsx';
 import NextSheheriTime from '../components/next-sehri-time.jsx';
 import CountDownTimer from '../components/countdown-timer.jsx';
+import TodaysAyah from '../components/todays-ayah.jsx';
+import TodaysHadith from '../components/todays-hadith.jsx';
+import Todo from '../components/todo.jsx';
 
 export default class Main extends Component {
 	constructor(props) {
@@ -110,19 +113,19 @@ export default class Main extends Component {
 	}
 	getEndTime() {
 		var singleRamadan = this.findOne(ramadanList, this.getDate().getLongMonth() + ' ' + this.getDate().getDate());
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2018 ' + singleRamadan[0].iftarTime;
+		var makeJsDateType = singleRamadan[0].date + ', ' + new Date().getFullYear().toString() + ' ' + singleRamadan[0].iftarTime;
 		return new Date(makeJsDateType).getTime();
 	}
 
 	getEndTimeForShehri() {
 		var singleRamadan = this.findOne(ramadanList, this.getDate().getLongMonth() + ' ' + this.getDate().getDate());
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2018 ' + singleRamadan[0].sheriLastTime;
+		var makeJsDateType = singleRamadan[0].date + ', ' + new Date().getFullYear().toString() + ' ' + singleRamadan[0].sheriLastTime;
 		return new Date(makeJsDateType).getTime();
 	}
 
 	getEndTimeForNextShehri() {
 		var singleRamadan = this.findOne(ramadanList, Moment(this.getDate()).add(1, 'days')._d.getLongMonth() + ' ' + Moment(this.getDate()).add(1, 'days').date());
-		var makeJsDateType = singleRamadan[0].date + ', ' + '2018 ' + singleRamadan[0].sheriLastTime;
+		var makeJsDateType = singleRamadan[0].date + ', ' + new Date().getFullYear().toString() + ' ' + singleRamadan[0].sheriLastTime;
 		return new Date(makeJsDateType).getTime();
 	}
 
@@ -149,11 +152,19 @@ export default class Main extends Component {
 	render() {
 		return (
             <div className="mains">
-                <CountDownTimer type={this.state.isShehri} countData={this.state.countData} staticInfo={this.state.staticInfo[0]}/>
-                <div className="card-wrapper">
-                    <IftarTimeToday iftarTime={this.state.staticInfo[0].iftarTime}/>
-                    <NextSheheriTime nextSheheriTime={this.state.nextStaticInfo[0].sheriLastTime} />
-                </div>
+				<section className="rk-mid">
+					<CountDownTimer type={this.state.isShehri} countData={this.state.countData} staticInfo={this.state.staticInfo[0]}/>	
+					<div className="rk-next-prev-timer">
+						<IftarTimeToday iftarTime={this.state.staticInfo[0].iftarTime}/>
+                    	<NextSheheriTime nextSheheriTime={this.state.nextStaticInfo[0].sheriLastTime} />
+					</div>
+					<Todo todo={this.state.staticInfo[0].todo}/>
+					
+				</section>
+				<section className="rk-right">
+					<TodaysAyah todaysAyah={ this.state.staticInfo[0].todaysAyah }  />
+					<TodaysHadith todaysHadith={this.state.staticInfo[0].todaysHadith} />
+				</section>
             </div>
 		);
 	}

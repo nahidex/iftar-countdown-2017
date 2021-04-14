@@ -5,10 +5,10 @@ export default class IftarTimeToday extends Component {
     render () {
 		
         return (
-			<div className="card iftar-time">
-				<img src="clock.svg"/>
-				<h5>আজকের ইফতারের সময়</h5>
-				<h6>{Moment(this.props.iftarTime, 'hh:mm').format('hh:mm')}</h6>
+			<div className="rk-card rk-time-card">
+				<img src="../icons/035-dates.png" alt=""/>
+				<h6>আজকের ইফতারের সময়</h6>
+				<h2>{Moment(this.props.iftarTime, 'hh:mm').format('hh:mm')}</h2>
 			</div>
 		);
     }

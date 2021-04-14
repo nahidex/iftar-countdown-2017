@@ -1,91 +1,109 @@
  [
 	{
 		"ramadan": "00",
-		"date": "May 17",
+		"date": "April 14",
 		"sheriLastTime": "03:46:00",
-		"iftarTime": "18:39:00"
+		"iftarTime": "18:23:00",
+		"todaysAyah": {
+			"ayah": "আমার ইবাদাত করার জন্যই আমি মানব ও জ্বিন জাতি তৈরী সৃষ্টি করেছি",
+			"ref": "(৫১:৫৬)"
+		},
+		"todaysHadith": {
+			"hadith": "যে ব্যাক্তি ঈমানসহ পুন্যের আশায় রামাদ্বনের সিয়াম পালন করে, তার পূর্বের গুনাহ ক্ষমা করে দেয়া হয়।",
+			"ref": "(সহীহ বুখারী, হাদীসঃ ৩৮)"
+		},
+		"todo": "সাফল্য অর্জনের জন্য সূরা আল-মুমিনূনের প্রথুম ১৫টি আয়াত অর্থসহ পড়ুন।"
 	},
 	{
 		"ramadan": "01",
-		"date": "May 18",
+		"date": "April 15",
 		"sheriLastTime": "03:46:00",
-		"iftarTime": "18:39:00"
+		"iftarTime": "18:39:00",
+		"todaysAyah": {
+			"ayah": "তোমরা কি ধরানা করো যে, আমি তোমাদেরকে অনর্থক সৃষ্টি করেছি এবং তোমরা আমার কাছে ফিরে আসবে না?",
+			"ref": "(২৩:১১৫)"
+		},
+		"todaysHadith": {
+			"hadith": "আল্লাহ তা'আলা বলেছেন, 'বনী আদমের প্রতিটি কাজ তার নিজের জন্যেই-ব্যতিক্রম সিয়াম। তা আমার জন্য, আমি নিজেই তার পরুস্কার দেব। সিয়াম পালকারীদের মুখের গন্ধ আল্লাহর নিকট মিশকের ঘ্রাণের চেয়েও অধিক সুগন্ধযুক্ত।'",
+			"ref": "(সহীহ বুখারী, হাদীসঃ ৫৯২৭)"
+		},
+		"todo": "সাহরিতে খেতে উঠে যথাসম্ভব দু'আ করার চেষ্টা করুন। কারণ এটি দু'আ কবুলের গুরুত্বপূর্ণ সময়।"
 	},
 	{
 		"ramadan": "02",
-		"date": "May 19",
+		"date": "April 16",
 		"sheriLastTime": "03:45:00",
 		"iftarTime": "18:39:00"
 	},
 	{
 		"ramadan": "03",
-		"date": "May 20",
+		"date": "April 20",
 		"sheriLastTime": "03:44:00",
 		"iftarTime": "18:40:00"
 	},
 	{
 		"ramadan": "04",
-		"date": "May 21",
+		"date": "April 21",
 		"sheriLastTime": "03:44:00",
 		"iftarTime": "18:40:00"
 	},
 	{
 		"ramadan": "05",
-		"date": "May 22",
+		"date": "April 22",
 		"sheriLastTime": "03:43:00",
 		"iftarTime": "18:41:00"
 	},
 	{
 		"ramadan": "06",
-		"date": "May 23",
+		"date": "April 23",
 		"sheriLastTime": "03:43:00",
 		"iftarTime": "18:42:00"
 	},
 	{
 		"ramadan": "07",
-		"date": "May 24",
+		"date": "April 24",
 		"sheriLastTime": "03:39:00",
 		"iftarTime": "18:42:00"
 	},
 	{
 		"ramadan": "08",
-		"date": "May 25",
+		"date": "April 25",
 		"sheriLastTime": "03:42:00",
 		"iftarTime": "18:42:00"
 	},
 	{
 		"ramadan": "09",
-		"date": "May 26",
+		"date": "April 26",
 		"sheriLastTime": "03:41:00",
 		"iftarTime": "18:43:00"
 	},
 	{
 		"ramadan": "10",
-		"date": "May 27",
+		"date": "April 27",
 		"sheriLastTime": "03:41:00",
 		"iftarTime": "18:43:00"
 	},
 	{
 		"ramadan": "11",
-		"date": "May 28",
+		"date": "April 28",
 		"sheriLastTime": "03:40:00",
 		"iftarTime": "18:44:00"
 	},
 	{
 		"ramadan": "12",
-		"date": "May 29",
+		"date": "April 29",
 		"sheriLastTime": "03:40:00",
 		"iftarTime": "18:44:00"
 	},
 	{
 		"ramadan": "13",
-		"date": "May 30",
+		"date": "April 30",
 		"sheriLastTime": "03:40:00",
 		"iftarTime": "18:45:00"
 	},
 	{
 		"ramadan": "14",
-		"date": "May 31",
+		"date": "April 31",
 		"sheriLastTime": "03:39:00",
 		"iftarTime": "18:45:00"
 	},

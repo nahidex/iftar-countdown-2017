@@ -3,15 +3,14 @@ import React, { Component } from 'react';
 export default class Sidebar extends Component {
     render () {
         return (
-			<aside>
-				<h1>রমজানুল <br /> করিম </h1>
-				<h3>আজকের হাদিস</h3>
-				<blockquote>
-					<p>আবদুল্লাহ ইবনু মাসলামা (রহঃ) ... ’আবদুল্লাহ ইবনু ‘উমর (রাঃ) থেকে বর্ণিত, রাসুলুল্লাহ সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম রমযানের কথা আলোচনা করে বললেনঃ চাঁদ না দেখে তোমরা সাওম (রোযা/রোজা/সিয়াম/ছিয়াম) পালন করবে না এবং চাঁদ না দেখে ইফতার করবে না। যদি মেঘাছন্ন থাকে তাহলে তাঁর সময় (ত্রিশ দিন) পরিমান পূর্ন করবে।</p>
-					<small>- সহীহ হাদিস, ২০১২, ১২৩</small>
-				</blockquote>
+			<aside className="rk-nav">
+				<div className="rk-nav-wrap">
+					<a href="#">
+						<img src="../icons/001-muslim.png" alt=""/>
+						<span>রমাদ্বান <br/> কারীম <i>2.0</i></span>
+					</a>
+				</div>
 			</aside>
-			
 		);
     }
 }
